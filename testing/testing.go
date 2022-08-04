@@ -58,7 +58,7 @@ func FuncAssertion(t *testing.T, fnCasePtr any, fn any) {
 		caseFieldType := _case.Field(i).Type()
 		fnInType := fnType.In(i)
 		if caseFieldType != fnInType {
-			panic(fmt.Sprintf("case %d'th field(type '%s') not math fn %d'th in(type '%s')", i+1, caseFieldType.Name(), i+1, fnInType.Name()))
+			panic(fmt.Sprintf("case %d'th field(type '%s') not match fn %d'th in(type '%s')", i+1, caseFieldType.Name(), i+1, fnInType.Name()))
 		}
 	}
 
@@ -66,7 +66,7 @@ func FuncAssertion(t *testing.T, fnCasePtr any, fn any) {
 		caseFieldType := _case.Field(i).Type()
 		fnOutType := fnType.Out(i - fnInNum)
 		if caseFieldType != fnOutType {
-			panic(fmt.Sprintf("case %d'th field(type '%s') not math fn %d'th out(type '%s')", i+1, caseFieldType.Name(), i-fnInNum+1, fnOutType.Name()))
+			panic(fmt.Sprintf("case %d'th field(type '%s') not match fn %d'th out(type '%s')", i+1, caseFieldType.Name(), i-fnInNum+1, fnOutType.Name()))
 		}
 	}
 
