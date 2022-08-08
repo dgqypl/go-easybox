@@ -7,3 +7,5 @@
 - `Int64SliceToString(int64Slice []int64, sep string) string`
 - `StringToIntSlice(str string,sep string) ([]int,error)`
 - `StringToInt64Slice(str string,sep string) ([]int64,error)`
+- `IsBlank(str string) bool`
+- `TruncateString(str string, maxLen int) string`
