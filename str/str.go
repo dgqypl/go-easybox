@@ -60,3 +60,19 @@ func stringToNumericSlice[T numeric](str string, sep string, f func(string) (T, 
 
 	return target, nil
 }
+
+const BlankString = " "
+
+func IsBlank(str string) bool {
+	return strings.Trim(str, BlankString) == ""
+}
+
+// TruncateString 截断字符串，支持中文字符截断
+func TruncateString(str string, maxLen int) string {
+	runeStr := []rune(str)
+
+	if len(runeStr) <= maxLen {
+		return str
+	}
+	return string(runeStr[:maxLen])
+}

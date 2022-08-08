@@ -69,3 +69,15 @@ type stringToInt64SliceCase struct {
 func TestStringToInt64Slice(t *testing.T) {
 	easyboxt.FuncAssertion(t, &stringToInt64SliceCase{"1,2,3", ",", []int64{1, 2, 3}, nil}, StringToInt64Slice)
 }
+
+type truncateStringCase struct {
+	Str    string
+	MaxLen int
+	Out    string
+}
+
+func TestTruncateString(t *testing.T) {
+	string1 := "中文abd😊哈哈哈"
+	easyboxt.FuncAssertion(t, &truncateStringCase{string1, 100, string1}, TruncateString)
+	easyboxt.FuncAssertion(t, &truncateStringCase{string1, 7, "中文abd😊哈"}, TruncateString)
+}
