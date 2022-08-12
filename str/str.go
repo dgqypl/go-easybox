@@ -45,7 +45,7 @@ func StringToInt64Slice(str string, sep string) ([]int64, error) {
 func stringToNumericSlice[T numeric](str string, sep string, f func(string) (T, error)) ([]T, error) {
 	var target []T
 
-	if strings.Trim(str, "") == "" {
+	if strings.Trim(str, BlankString) == "" {
 		return target, nil
 	}
 

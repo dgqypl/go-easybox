@@ -37,13 +37,3 @@ func TestSecondsToTime(t *testing.T) {
 	_time := time.Unix(seconds, 0)
 	easyboxt.FuncAssertion(t, &secondsToTimeCase{seconds, _time}, SecondsToTime)
 }
-
-type millisecondsToTimeCase struct {
-	In  int64
-	Out time.Time
-}
-
-func TestMillisecondsToTime(t *testing.T) {
-	_time := time.Unix(0, milliseconds*1e6)
-	easyboxt.FuncAssertion(t, &millisecondsToTimeCase{milliseconds, _time}, MillisecondsToTime)
-}

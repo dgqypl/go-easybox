@@ -11,15 +11,11 @@ func SecondsFormat(seconds int64) string {
 }
 
 func MillisecondsFormat(milliseconds int64) string {
-	return MillisecondsToTime(milliseconds).Format(TimeFormat)
+	return time.UnixMilli(milliseconds).Format(TimeFormat)
 }
 
 func SecondsToTime(seconds int64) time.Time {
-	return MillisecondsToTime(seconds * 1000)
-}
-
-func MillisecondsToTime(milliseconds int64) time.Time {
-	return time.Unix(0, milliseconds*1e6)
+	return time.Unix(seconds, 0)
 }
 
 func GetTodayStartTime() time.Time {
