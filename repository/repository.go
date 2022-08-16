@@ -15,7 +15,7 @@ type Field struct {
 type IRepository[T any, I IdType] interface {
 	Insert(ctx context.Context, t T) (I, error)
 	UpdateById(ctx context.Context, id I, t T) error
-	UpdateFieldsById(id I, fields []*Field) error
+	UpdateFieldsById(ctx context.Context, id I, fields []*Field) error
 	GetById(ctx context.Context, id I) (T, error)
 	GetByIds(ctx context.Context, ids []I) ([]T, error)
 	DeleteById(ctx context.Context, id I) error
@@ -56,7 +56,7 @@ func (repo *DefaultRepository[T, I]) UpdateById(ctx context.Context, id I, t T) 
 	panic("UpdateById")
 }
 
-func (repo *DefaultRepository[T, I]) UpdateFieldsById(id I, fields []*Field) error {
+func (repo *DefaultRepository[T, I]) UpdateFieldsById(ctx context.Context, id I, fields []*Field) error {
 	panic("UpdateFieldsById")
 }
 func (repo *DefaultRepository[T, I]) GetById(ctx context.Context, id I) (T, error) {
