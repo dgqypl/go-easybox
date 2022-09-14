@@ -81,3 +81,25 @@ func TestTruncateString(t *testing.T) {
 	easyboxt.FuncAssertion(t, &truncateStringCase{string1, 100, string1}, TruncateString)
 	easyboxt.FuncAssertion(t, &truncateStringCase{string1, 7, "中文abd😊哈"}, TruncateString)
 }
+
+type fieldValueJoinCase[T any] struct {
+	Slice []T
+	Sep   string
+	F     func(T) string
+	Out   string
+	Err   error
+}
+
+func TestFieldValueJoin(t *testing.T) {
+	var slice []*User
+	u1 := &User{Id: 1, Name: "helen"}
+	u2 := &User{Id: 2, Name: "tim"}
+
+	slice = append(slice, u1, u2)
+
+	f := func(u *User) string {
+		return u.Name
+	}
+
+	easyboxt.FuncAssertion(t, &fieldValueJoinCase[*User]{slice, ",", f, "helen,tim", nil}, FieldValueJoin[*User])
+}

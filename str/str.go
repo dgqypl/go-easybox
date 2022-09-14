@@ -76,3 +76,26 @@ func TruncateString(str string, maxLen int) string {
 	}
 	return string(runeStr[:maxLen])
 }
+
+// FieldValueJoin 对自定义「结构体」/「结构体指针」切片中，每个元素的某个属性进行拼接
+//
+// 比如对于如下结构体：
+//
+// type User struct {
+// 	Id int64
+// 	Name string
+// }
+//
+func FieldValueJoin[T any](slice []T, sep string, f func(T) string) (string, error) {
+	if len(slice) == 0 {
+		return "", nil
+	}
+
+	var fieldValues []string
+
+	for _, v := range slice {
+		fieldValues = append(fieldValues, f(v))
+	}
+
+	return strings.Join(fieldValues, sep), nil
+}
